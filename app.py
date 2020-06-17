@@ -17,17 +17,6 @@ ma = Marshmallow(app)
 admin = Admin(app)
 
 
-@app.route('/')
-def index():
-    return render_template("index.html")
-
-
-@app.route('/graph')
-def graph():
-    data = {1, 2, 3, 4}
-    return render_template("graph.html", data=data)
-
-
 # Product Class/Model
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -44,6 +33,28 @@ class Product(db.Model):
 
 
 admin.add_view(ModelView(Product, db.session))
+
+
+@app.route('/')
+def index():
+    return render_template("index.html")
+
+
+@app.route('/graph/')
+def graph():
+    # products = Product.query.all()
+    data = [1, 2, 3, 4]
+    # return render_template("graph.html", data=data, products=products)
+    return render_template("graph.html", data=data)
+
+
+@app.route('/data/')
+def data():
+    products = Product.query.all()
+    # data = [1, 2, 3, 4]
+    return render_template("data.html", products=products)
+
+    # return render_template("graph.html", data=data)
 
 
 # Product Schema
