@@ -11,13 +11,9 @@
     <title>Srovnání cen</title>
   </head>
   <body>
-
-        {% for dat in data.item %}
-            {{ dat }}
-        {% endfor %}
-
         <script type="text/javascript">
-            var price = {{ data }}
+            var names = {{ data_names|safe }};
+            var prices = {{ data_prices|safe }};
         </script>
     <div class="container">
       <canvas id="myChart"></canvas>

@@ -6,10 +6,10 @@ Chart.defaults.global.defaultFontColor = '#777';
 let massPopChart = new Chart(myChart, {
   type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
   data:{
-    labels:['Kosik', 'Rohlik', 'Tesco'],
+    labels:names,
     datasets:[{
       label:'Ceny',
-      data:price,
+      data:prices,
       //backgroundColor:'green',
       backgroundColor:[
         'rgba(255, 99, 132, 0.6)',

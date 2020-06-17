@@ -42,19 +42,13 @@ def index():
 
 @app.route('/graph/')
 def graph():
-    # products = Product.query.all()
-    data = [1, 2, 3, 4]
-    # return render_template("graph.html", data=data, products=products)
-    return render_template("graph.html", data=data)
-
-
-@app.route('/data/')
-def data():
     products = Product.query.all()
-    # data = [1, 2, 3, 4]
-    return render_template("data.html", products=products)
-
-    # return render_template("graph.html", data=data)
+    data_names = []
+    data_prices = []
+    for product in products:
+        data_names.append(product.name)
+        data_prices.append(product.price)
+    return render_template("graph.html", data_names=data_names, data_prices=data_prices)
 
 
 # Product Schema
