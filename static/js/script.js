@@ -27,6 +27,13 @@ let massPopChart = new Chart(myChart, {
     }]
   },
   options:{
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
+        }]
+    },
     title:{
       display:true,
       text:'Porovnání cen různých obchodů',
