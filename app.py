@@ -11,6 +11,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 # Database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = "secreto_keyeto"
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
@@ -38,6 +39,19 @@ admin.add_view(ModelView(Product, db.session))
 @app.route('/')
 def index():
     return render_template("index.html")
+
+
+@app.route('/data')
+def data():
+    products = Product.query
+    if request.values.get("price"):
+        products = products.filter(Product.price > request.values["price"])
+
+    if request.values.get("quantity"):
+        products = products.filter(Product.qty > request.values["quantity"])
+
+    return render_template("data.html", products=products, price=request.values.get("price"),
+                           quantity=request.values.get("quantity"))
 
 
 @app.route('/graph/')
@@ -83,7 +97,7 @@ def add_product():
 def get_products():
     all_products = Product.query.all()
     result = products_schema.dump(all_products)
-    # return jsonify(result.data)
+
     return jsonify(result)
 
 
@@ -91,6 +105,7 @@ def get_products():
 @app.route('/product/<id>', methods=['GET'])
 def get_product(id):
     product = Product.query.get(id)
+
     return product_schema.jsonify(product)
 
 

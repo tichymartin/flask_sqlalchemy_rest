@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon"/>
 
     <title>Srovnání cen</title>
-  </head>
-  <body>
-        <script type="text/javascript">
-            var names = {{ data_names|safe }};
-            var prices = {{ data_prices|safe }};
-        </script>
+</head>
+<body>
+    <script type="text/javascript">
+        let names = {{ data_names|safe }};
+        let prices = {{ data_prices|safe }};
+    </script>
     <div class="container">
-      <canvas id="myChart"></canvas>
+        <canvas id="myChart"></canvas>
     </div>
     <script src="/static/js/script.js">
     </script>
-  </body>
+</body>
 </html>
